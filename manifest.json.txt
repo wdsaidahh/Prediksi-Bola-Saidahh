@@ -1,0 +1,22 @@
+{
+  "name": "Prediksi Bola",
+  "short_name": "PrediksiBola",
+  "description": "Dashboard Prediksi Bola Bosjoko",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#b8860b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
