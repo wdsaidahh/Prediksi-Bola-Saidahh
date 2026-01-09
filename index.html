@@ -16,12 +16,15 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  transition: color 0.3s;
 }
 
+/* OVERLAY (KUNCI DARK/LIGHT) */
 .bg-overlay {
   position: fixed;
   inset: 0;
   z-index: -1;
+  transition: background 0.4s;
 }
 
 /* ===============================
@@ -32,44 +35,51 @@ header {
   text-align: center;
   font-size: 24px;
   font-weight: bold;
+  letter-spacing: 1px;
   background: linear-gradient(90deg, #b8860b, #ffd700);
   color: #121212;
 }
 
 /* ===============================
-   FILTER BAR
+   LAYOUT
 ================================ */
-.filter-bar {
+.container {
   display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin: 18px auto;
-  max-width: 500px;
+  max-width: 1200px;
+  margin: 20px auto;
+  gap: 20px;
+  padding: 0 10px;
 }
 
-.filter-bar select,
-.filter-bar button {
-    padding: 1px 1px;
-    font-weight: bold;
-    border-radius: 6px;
-    border: 1px solid #ffd700;
-    cursor: pointer;
+.sidebar {
+  width: 220px;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(255,215,0,0.3);
+}
+
+.main {
+  flex: 1;
 }
 
 /* ===============================
-   CONTENT
+   FORM
 ================================ */
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 10px 30px;
+select, button {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: 1px solid #ffd700;
+  cursor: pointer;
 }
 
 /* ===============================
    TABLE
 ================================ */
 .liga-box {
-  margin-bottom: 26px;
+  margin-bottom: 28px;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 8px 22px rgba(255,215,0,.35);
@@ -77,8 +87,9 @@ header {
 
 .liga-title {
   padding: 12px;
-  text-align: center;
   font-weight: bold;
+  text-align: center;
+  font-size: 18px;
   background: linear-gradient(90deg, #b8860b, #ffd700);
   color: #121212;
 }
@@ -94,116 +105,85 @@ th, td {
   font-weight: bold;
 }
 
-.match { color: #fffff; }
-.time { color: #fffff; }
-
-.prediksi-score {
-  font-size: 16px;
-  color: #fffff;
-}
-
-.prediksi-akurasi {
-  font-size: 12px;
-  margin-top: 4px;
-  color: #fffff;
-}
+.match { color: #fff; }
+.time { color: #ffd700; }
+.score { color: #b8860b; }
 
 /* ===============================
    DARK MODE
 ================================ */
-body.dark { color: #fff; }
-body.dark .bg-overlay { background: rgba(0,0,0,0.75); }
-
+body.dark {
+  color: #fff;
+}
+body.dark .bg-overlay {
+  background: rgba(0,0,0,0.75);
+}
+body.dark .sidebar {
+  background: rgba(20,20,20,0.9);
+  color: #ffd700;
+}
 body.dark select,
 body.dark button {
   background: #121212;
-  color: #fff;
+  color: #ffd700;
 }
-
 body.dark th {
   background: #222;
   color: #ffd700;
 }
-
 body.dark td {
   border-bottom: 1px solid #444;
+}
+body.dark tr:nth-child(even) td {
+  background: rgba(0,0,0,0.3);
 }
 
 /* ===============================
    LIGHT MODE
 ================================ */
-body.light { color: #000; }
-body.light .bg-overlay { background: rgba(255,255,255,0.75); }
-
+body.light {
+  color: #000;
+}
+body.light .bg-overlay {
+  background: rgba(255,255,255,0.75);
+}
+body.light .sidebar {
+  background: rgba(255,255,255,0.9);
+  color: #b8860b;
+}
 body.light select,
 body.light button {
   background: #fff;
   color: #b8860b;
 }
-
 body.light th {
   background: #fff8dc;
   color: #b8860b;
 }
-
-body.light .match,
-body.light .time,
-body.light .prediksi-akurasi {
-  color: #000;
+body.light td {
+  border-bottom: 1px solid #ddd;
+}
+body.light tr:nth-child(even) td {
+  background: rgba(255,255,255,0.6);
 }
 
 /* ===============================
    RESPONSIVE
 ================================ */
-@media(max-width:600px){
-  .filter-bar {
+@media(max-width:768px){
+  .container {
     flex-direction: column;
   }
+  .sidebar {
+    width: 100%;
+  }
 }
+.match { color: #fff; } /* default (dark) */
 
-/* POPUP */
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.7);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:999;
-}
-.modal-content{
-  background:linear-gradient(180deg,#1a1a1a,#000);
-  border:2px solid #ffd700;
-  border-radius:14px;
-  width:90%;
-  max-width:420px;
-  padding:22px;
-  color:#ffd700;
-  text-align: center;
-  animation:zoom .3s ease;
-}
-@keyframes zoom{
-  from{transform:scale(.8);opacity:0}
-  to{transform:scale(1);opacity:1}
-}
-.modal h3{
-  margin-top:0;
-  text-align:center;
-}
-.modal .vs{
-  font-size:18px;
-  text-align:center;
-  margin:10px 0;
-}
-.modal .close{
-  margin-top:18px;
-  width:100%;
-  padding:10px;
-  border:none;
-  border-radius:8px;
-  background:linear-gradient(90deg,#b8860b,#ffd700);
-  font-weight:bold;
-  cursor:pointer;
+body.light .match,
+body.light .time,
+body.light .score {
+  color: #000 !important; /* HITAM */
 }
 </style>
 </head>
@@ -211,109 +191,110 @@ body.light .prediksi-akurasi {
 <body class="dark">
 <div class="bg-overlay"></div>
 
-<header>⚽ DASHBOARD PREDIKSI BOLA</header>
-
-<div class="filter-bar">
-  <select id="ligaSelect" onchange="renderData()">
-    <option value="ALL">Semua Liga</option>
-  </select>
-  <button onclick="toggleMode()">🌙 / ☀️ Mode</button>
-</div>
+<header>
+⚽ DASHBOARD PREDIKSI BOLA
+</header>
 
 <div class="container">
-  <div id="dashboard">Loading...</div>
-</div>
 
-<!-- POPUP -->
-<div class="modal" id="modal">
-  <div class="modal-content" id="modalContent"></div>
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h3 style="text-align:center;">Filter Liga</h3>
+    <select id="ligaSelect" onchange="renderData()">
+      <option value="ALL">Semua Liga</option>
+    </select>
+    <button onclick="toggleMode()">Dark / Light Mode</button>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="main" id="dashboard">
+    Loading...
+  </div>
+
 </div>
 
 <script>
-const API_URL="https://script.google.com/macros/s/AKfycbwjLFb_3hifBW4exvO5c4hES9nPPWCtPurikAmfyQeiqGOC1P6Xuc82xCw1IXMYBXFJ/exec";
-let allData=[];
+const API_URL = "https://script.google.com/macros/s/AKfycbwjLFb_3hifBW4exvO5c4hES9nPPWCtPurikAmfyQeiqGOC1P6Xuc82xCw1IXMYBXFJ/exec";
+let allData = [];
+let ligaSet = new Set();
 
-/* AKURASI HARIAN */
-function getDailyAkurasi(key){
-  const d=new Date().toISOString().slice(0,10);
-  let s=0;(key+d).split("").forEach(c=>s+=c.charCodeAt(0));
-  return 65+(s%31);
-}
-
-/* MODE */
-function toggleMode(){
+/* TOGGLE MODE */
+function toggleMode() {
   document.body.classList.toggle("dark");
   document.body.classList.toggle("light");
-  localStorage.setItem("mode",document.body.classList.contains("dark")?"dark":"light");
+  localStorage.setItem("mode", document.body.classList.contains("dark") ? "dark" : "light");
 }
-(()=>{const m=localStorage.getItem("mode");if(m)document.body.className=m})();
 
-/* POPUP */
-function showPopup(r){
-  const ak=getDailyAkurasi(r.home+r.away);
-  document.getElementById("modalContent").innerHTML=`
-    <h3>${r.liga}</h3>
-    <div class="vs">${r.home} <b>VS</b> ${r.away}</div>
-    <p>🕒 ${r.tanggal} ${r.waktu}</p>
-    <p>🎯 Prediksi: <b>${r.prediksi}</b></p>
-    <p>📊 Akurasi: <b>${ak}%</b></p>
-    <button class="close" onclick="closePopup()">Tutup</button>
-  `;
-  document.getElementById("modal").style.display="flex";
-}
-function closePopup(){
-  document.getElementById("modal").style.display="none";
-}
-document.getElementById("modal").onclick=e=>{
-  if(e.target.id==="modal")closePopup();
-};
+/* LOAD MODE */
+(function(){
+  const mode = localStorage.getItem("mode");
+  if(mode){
+    document.body.classList.remove("dark","light");
+    document.body.classList.add(mode);
+  }
+})();
 
 /* LOAD DATA */
 async function loadData(){
-  const res=await fetch(API_URL);
-  const json=await res.json();
-  allData=json.data||[];
-  const ligaSet=[...new Set(allData.map(r=>r.liga))];
-  const s=document.getElementById("ligaSelect");
-  s.innerHTML=`<option value="ALL">Semua Liga</option>`;
-  ligaSet.forEach(l=>s.innerHTML+=`<option>${l}</option>`);
+  const res = await fetch(API_URL);
+  const json = await res.json();
+  allData = json.data;
+
+  allData.forEach(r => ligaSet.add(r.liga));
+  const select = document.getElementById("ligaSelect");
+  ligaSet.forEach(l => {
+    const opt = document.createElement("option");
+    opt.value = l;
+    opt.textContent = l;
+    select.appendChild(opt);
+  });
+
   renderData();
 }
 
 /* RENDER */
 function renderData(){
-  const liga=document.getElementById("ligaSelect").value;
-  const data=liga==="ALL"?allData:allData.filter(r=>r.liga===liga);
-  const g={};
-  data.forEach(r=>(g[r.liga]=g[r.liga]||[]).push(r));
+  const liga = document.getElementById("ligaSelect").value;
+  const filtered = liga === "ALL" ? allData : allData.filter(r => r.liga === liga);
 
-  let h="";
-  for(const l in g){
-    h+=`
-    <div class="liga-box">
-      <div class="liga-title">${l}</div>
-      <table>
-        <thead><tr><th>Pertandingan</th><th>Waktu</th><th>Prediksi</th></tr></thead>
-        <tbody>
-          ${g[l].map(r=>`
-          <tr onclick='showPopup(${JSON.stringify(r)})'>
-            <td class="match">${r.home}<div>VS</div>${r.away}</td>
-            <td class="time">${r.tanggal} ${r.waktu}</td>
-            <td>
-              <div class="prediksi-score">${r.prediksi}</div>
-              <div class="prediksi-akurasi">
-                Akurasi: ${getDailyAkurasi(r.home+r.away)}%
-              </div>
-            </td>
-          </tr>`).join("")}
-        </tbody>
-      </table>
-    </div>`;
+  const grouped = {};
+  filtered.forEach(r => {
+    if(!grouped[r.liga]) grouped[r.liga] = [];
+    grouped[r.liga].push(r);
+  });
+
+  let html = "";
+  for(const l in grouped){
+    html += `
+      <div class="liga-box">
+        <div class="liga-title">${l}</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Pertandingan</th>
+              <th>Waktu</th>
+              <th>Prediksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${grouped[l].map(r => `
+              <tr>
+                <td class="match">${r.home} VS ${r.away}</td>
+                <td class="time">${r.tanggal} ${r.waktu}</td>
+                <td class="score">${r.prediksi}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    `;
   }
-  document.getElementById("dashboard").innerHTML=h||"Data tidak tersedia";
+
+  document.getElementById("dashboard").innerHTML = html;
 }
 
 loadData();
 </script>
+
 </body>
 </html>
