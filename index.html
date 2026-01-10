@@ -94,13 +94,8 @@ th, td {
   font-weight: bold;
 }
 
-.match { color: #fffff; }
-.time { color: #fffff; }
-
-.prediksi-score {
-  font-size: 16px;
-  color: #fffff;
-}
+.match { color: #121212; }
+.time { color: #121212; }
 
 .prediksi-akurasi {
   font-size: 12px;
@@ -111,7 +106,7 @@ th, td {
 /* ===============================
    DARK MODE
 ================================ */
-body.dark { color: #fff; }
+body.dark { color: #121212; }
 body.dark .bg-overlay { background: rgba(0,0,0,0.75); }
 
 body.dark select,
@@ -121,18 +116,23 @@ body.dark button {
 }
 
 body.dark th {
-  background: #222;
-  color: #ffd700;
+  background: #121212;
+  color: #b8860b;
 }
 
 body.dark td {
   border-bottom: 1px solid #444;
 }
+ body.dark .match,
+body.dark .time,
+body.dark .prediksi-akurasi {
+  color: #121212;
+}
 
 /* ===============================
    LIGHT MODE
 ================================ */
-body.light { color: #000; }
+body.light { color: #b8860b; }
 body.light .bg-overlay { background: rgba(255,255,255,0.75); }
 
 body.light select,
@@ -142,14 +142,36 @@ body.light button {
 }
 
 body.light th {
-  background: #fff8dc;
-  color: #b8860b;
+  background: #b8860b;
+  color: #121212;
 }
 
 body.light .match,
 body.light .time,
 body.light .prediksi-akurasi {
-  color: #000;
+  color: #b8860b;
+}
+  .liga-title{
+  position:relative;
+  z-index:1;
+  border-radius:10px 10px 0 0;
+}
+
+/* Table naik ke atas */
+.liga-box table {
+  width: calc(95% - 20px);   /* 10px kiri + 10px kanan */
+  margin: 0 auto;             /* center */
+  top:-8px;                 /* ATUR NAIK TURUN DI SINI */
+  background:#fff8dc;
+  border-radius:20px;
+  overflow:hidden;
+  z-index:2;
+  box-shadow:0 12px 26px rgba(255,215,0,.35);
+}
+
+/* Spasi bawah agar tidak tabrakan */
+.liga-box{
+  padding-bottom:14px;
 }
 
 /* ===============================
